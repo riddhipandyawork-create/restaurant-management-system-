@@ -1,0 +1,168 @@
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial,sans-serif;
+}
+
+body{
+    background: linear-gradient(135deg, #fff8f0, #ffe8cc);
+    font-family: 'Poppins', sans-serif;
+}
+
+.navbar{
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding:20px 60px;
+background:#d62828;
+}
+
+.navbar h1{
+color:white;
+}
+
+.navbar a{
+color:white;
+text-decoration:none;
+margin-left:20px;
+}
+
+.hero{
+
+display:flex;
+
+justify-content:space-between;
+
+align-items:center;
+
+padding:80px;
+
+height:85vh;
+
+}
+
+.left{
+
+width:50%;
+
+}
+
+.left h2{
+
+font-size:60px;
+
+margin-bottom:20px;
+
+}
+
+.left p{
+
+font-size:22px;
+
+line-height:35px;
+
+margin-bottom:30px;
+
+}
+
+.buttons button{
+
+margin-right:20px;
+
+}
+
+.outline{
+
+background:white;
+
+color:#d62828;
+
+border:2px solid #d62828;
+
+}
+
+.right{
+
+width:45%;
+
+}
+
+.right img{
+
+width:100%;
+
+border-radius:20px;
+
+box-shadow:0 15px 35px rgba(0,0,0,.2);
+
+}
+
+button{
+padding:15px 35px;
+background:#f77f00;
+color:white;
+border:none;
+border-radius:8px;
+cursor:pointer;
+font-size:18px;
+}
+
+button:hover{
+background:#d62828;
+}
+.navbar a:hover{
+
+color:#ffd166;
+
+transition:.3s;
+
+}
+
+button{
+
+transition:.3s;
+
+}
+
+button:hover{
+
+transform:scale(1.05);
+
+}
+/* ==========================
+   Statistics Section
+========================== */
+
+.stats{
+    display:flex;
+    justify-content:space-around;
+    align-items:center;
+    padding:60px 80px;
+    background:#ffffff;
+    margin-top:40px;
+}
+
+.stat-card{
+    text-align:center;
+    padding:20px;
+    width:220px;
+    border-radius:15px;
+    transition:0.3s;
+}
+
+.stat-card:hover{
+    transform:translateY(-8px);
+    box-shadow:0 10px 25px rgba(0,0,0,0.15);
+}
+
+.stat-card h2{
+    font-size:42px;
+    color:#d62828;
+    margin-bottom:10px;
+}
+
+.stat-card p{
+    font-size:18px;
+    color:#555;
+}
