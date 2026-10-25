@@ -2,11 +2,11 @@
 
 This document outlines the roles, responsibilities, and specific contributions of each team member in the development of the 22nd Parallel Restaurant Management System (RMS).
 
-## 1. [Your Name/ID] - Lead Full-Stack Developer
-*Primary contributor responsible for the core backend business logic, operational views, and real-time systems.*
-- **Backend Architecture:** Developed the Node.js/Express server, including RESTful routing, controllers, and authentication middleware.
-- **Real-Time Integration:** Implemented WebSockets (Socket.io) for live synchronization between the ordering system and the Kitchen Display System (KDS).
-- **Core Frontend Views:** Built the primary React.js interfaces for the Admin portal (Orders, Tables, Kitchen, Dashboard) and Customer website.
+## 1. [Your Name/ID] - Lead Full-Stack & Systems Architect
+*Primary contributor responsible for the core backend business logic, real-time WebSocket systems, and specialized operational screens.*
+- **Backend Architecture:** Developed the Node.js/Express server, including RESTful routing, controllers, and JWT authentication middleware.
+- **Real-Time WebSockets:** Implemented Socket.io for live bidirectional synchronization between POS orders and the Kitchen Display System (KDS).
+- **Core Operations Engine:** Built the Kitchen Display System (KDS) interface, Analytics aggregation engine, and Staff Administration controls.
 
 ## 2. [Member 2 Name/ID] - Database Architect
 *Responsible for data modeling, storage solutions, and database initialization.*
@@ -14,11 +14,12 @@ This document outlines the roles, responsibilities, and specific contributions o
 - **Data Seeding:** Created the initialization scripts (`seeds/seed.js`) to populate the database with over 150 authentic menu items.
 - **Optimization:** Handled database connections, `.env` configurations, and optimized data relations for efficient querying.
 
-## 3. [Member 3 Name/ID] - Frontend Architect & API Integrator
-*Responsible for reusable UI design, global state management, and frontend-to-backend integration.*
-- **State Management:** Implemented global state management using Zustand for Auth, Cart, and user sessions across the applications.
-- **API Integration:** Built the frontend API service layers (`client/src/services` & `customer/src/services`) connecting React to the Node.js backend.
-- **UI Components:** Developed reusable, responsive UI components (Navbars, Modals, Auth pages) and managed the design documentation (`open-design/`).
+## 3. [Member 3 Name/ID] (Riddhi Pandya) - Frontend Architect & Full-Stack UI Integrator
+*Responsible for end-to-end customer web experience, operational admin interfaces, and frontend state/API architecture.*
+- **Customer Web Application:** Architected the complete customer website (Landing, Digital Menu browsing, Table Reservation booking, Live Order Tracking, and Reviews).
+- **Admin UI Modules:** Built the operational admin modules including Dashboard KPIs, POS Order station, Menu catalog management, Billing & Invoicing, and Table floor map.
+- **State Management & Services:** Implemented global state management using Zustand and built the unified Axios API service layer (`client/src/services` & `customer/src/services`).
+- **UI Design System:** Maintained design tokens, reusable UI components (Navbars, Modals, Drawer cart, Sidebars), and project documentation.
 
 ## 4. [Member 4 Name/ID] - DevOps & Configuration Engineer
 *Provided build tooling support and initial repository scaffolding.*
