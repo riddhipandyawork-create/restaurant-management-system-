@@ -2,11 +2,14 @@
 
 This document outlines the roles, responsibilities, and specific contributions of each team member in the development of the 22nd Parallel Restaurant Management System (RMS).
 
-## 1. [Your Name/ID] - Lead Full-Stack & Systems Architect
-*Primary contributor responsible for the core backend business logic, real-time WebSocket systems, and specialized operational screens.*
-- **Backend Architecture:** Developed the Node.js/Express server, including RESTful routing, controllers, and JWT authentication middleware.
-- **Real-Time WebSockets:** Implemented Socket.io for live bidirectional synchronization between POS orders and the Kitchen Display System (KDS).
-- **Core Operations Engine:** Built the Kitchen Display System (KDS) interface, Analytics aggregation engine, and Staff Administration controls.
+## 1. Bhargav Rajput (24bt04144) - Lead Full-Stack & Systems Architect
+*Primary contributor responsible for the core backend business logic, real-time WebSocket systems, operational kitchen display, and system-level test infrastructure.*
+- **Backend Architecture:** Developed the central Node.js/Express server (`server/index.js`), middleware pipeline, and modular REST API routing.
+- **Authentication & Security:** Implemented JWT verification (`server/middleware/auth.js`), password hashing via bcrypt, and granular role-based access control (Admin, Manager, Waiter, Cashier, Kitchen).
+- **Core Business Logic Controllers:** Authored backend controllers for order lifecycle (`orderController.js`), menu updates, table allocation, billing calculations, and analytics aggregations.
+- **Real-Time WebSockets:** Implemented Socket.io server handlers (`sockets/orderSocket.js`) and bidirectional live updates between POS orders and the Kitchen Display System (KDS).
+- **Kitchen Display System (KDS) & Operational UI:** Built the real-time Kitchen Display interface (`Kitchen.jsx`), Orders monitoring workflow (`Orders.jsx`), Reports and Analytics dashboards (`Reports.jsx`), and Staff HR administration (`Staff.jsx`).
+- **Quality Assurance & Testing:** Engineered the automated testing suite utilizing Jest and Supertest across 5 comprehensive test suites (29 passing unit and integration tests).
 
 ## 2. [Member 2 Name/ID] - Database Architect
 *Responsible for data modeling, storage solutions, and database initialization.*
