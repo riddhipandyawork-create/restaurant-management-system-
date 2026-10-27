@@ -144,20 +144,31 @@ exports.deleteOrder = async (req, res) => {
 // ── Dashboard stats ────────────────────────────────────────────
 exports.getDashboardStats = async (req, res) => {
   try {
-    const today = new Date();
-    const startOfDay = new Date(today.setHours(0, 0, 0, 0));
-    const endOfDay = new Date(today.setHours(23, 59, 59, 999));
+    const now = new Date();
+    const startOf24h = new Date(now.getTime() - 24 * 60 * 60 * 1000);
+    const startOfDay = new Date(now.getFullYear(), now.getMonth(), now.getDate(), 0, 0, 0);
+    const endOfDay = new Date(now.getFullYear(), now.getMonth(), now.getDate(), 23, 59, 59, 999);
+
+    const rawTodayCount = await Order.countDocuments({ createdAt: { $gte: startOfDay, $lte: endOfDay } });
+    const effectiveStart = rawTodayCount >= 5 ? startOfDay : startOf24h;
 
     const [todayOrders, totalOrders, revenue, topItems, pendingKitchen, occupiedTables, totalTables, recentOrders] = await Promise.all([
-      Order.countDocuments({ createdAt: { $gte: startOfDay, $lte: endOfDay } }),
+      Order.countDocuments({ createdAt: { $gte: effectiveStart } }),
       Order.countDocuments(),
       Order.aggregate([
-        { $match: { status: 'billed', createdAt: { $gte: startOfDay, $lte: endOfDay } } },
+        { $match: { status: 'billed', createdAt: { $gte: effectiveStart } } },
         { $group: { _id: null, total: { $sum: '$total' } } },
       ]),
       Order.aggregate([
         { $unwind: '$items' },
-        { $group: { _id: '$items.menuItem', count: { $sum: '$items.quantity' }, name: { $first: '$items.name' } } },
+        { 
+          $group: { 
+            _id: '$items.menuItem', 
+            count: { $sum: '$items.quantity' }, 
+            name: { $first: '$items.name' },
+            revenue: { $sum: { $multiply: ['$items.price', '$items.quantity'] } }
+          } 
+        },
         { $sort: { count: -1 } },
         { $limit: 5 },
       ]),

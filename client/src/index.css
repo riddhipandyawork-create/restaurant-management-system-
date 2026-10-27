@@ -43,23 +43,86 @@
    - Soft Limestone:  #F0E6D8 / #FAF7F2
    - Deep Rust:       #5A2E25 / #3A1F18 / #1C110D ─────────────────── */
 :root {
-  --bg-base:       #0B0D11;
-  --bg-card:       #12151B;
-  --bg-elevated:   #181C24;
-  --bg-hover:      rgba(255, 255, 255, 0.04);
-  --border:        rgba(255, 255, 255, 0.08);
-  --border-accent: rgba(224, 90, 56, 0.35);
+  /* Atelier Haute Hospitality — Michelin-Caliber Ivory Canvas */
+  --bg-base:        #FAF8F5;       /* Warm ivory silk canvas */
+  --bg-card:        #FFFFFF;       /* Pure white floating card */
+  --bg-elevated:    #F5F1EA;       /* Soft porcelain layer */
+  --bg-hover:       rgba(184, 74, 43, 0.05);
+  --border:         rgba(44, 30, 24, 0.08); /* Hairline refined border */
+  --border-hover:   rgba(184, 74, 43, 0.28);
+  --border-accent:  rgba(184, 74, 43, 0.35);
 
-  /* Terracotta & Warm Luxury Accents */
+  /* Glazed Artisanal Terracotta */
+  --terracotta:        #B84A2B;
+  --terracotta-light:  #D16344;
+  --terracotta-dark:   #8E3219;
+  --terracotta-bg:     #FAF2EE;
+  --accent:            #B84A2B;
+  --accent-light:      #D16344;
+  --accent-dark:       #8E3219;
+  --accent-glow:       rgba(184, 74, 43, 0.12);
+
+  /* Olive Laurel (Michelin Greens) */
+  --olive:             #4D6E48;
+  --olive-light:       #678B61;
+  --olive-dark:        #375033;
+  --olive-bg:          #EFF5ED;
+  --olive-border:      rgba(77, 110, 72, 0.25);
+  --success:           #4D6E48;
+  --success-bg:        #EFF5ED;
+
+  /* Champagne Amber & Saffron */
+  --gold:              #C28E38;
+  --gold-bg:           #FAF4E8;
+  --warning:           #C28E38;
+  --warning-bg:        #FAF4E8;
+  --danger:            #C83E2D;
+  --danger-bg:         #FDEEEB;
+  --info:              #3D6E8C;
+  --info-bg:           #EDF4F8;
+
+  /* Haute Typography */
+  --text-primary:      #1E1614;    /* Deep artisanal espresso */
+  --text-secondary:    #63554F;    /* Warm stone gray */
+  --text-muted:        #9E8E87;    /* Subtle parchment dust */
+  --text-light:        #FAF8F5;
+
+  --sidebar-bg:        #FFFFFF;
+  --sidebar-w:         264px;
+  --radius-xs:         6px;
+  --radius-sm:         10px;
+  --radius:            16px;
+  --radius-lg:         24px;
+  --radius-xl:         32px;
+
+  --shadow-sm:         0 2px 8px rgba(35, 20, 15, 0.03);
+  --shadow-md:         0 8px 24px rgba(35, 20, 15, 0.05);
+  --shadow-lg:         0 20px 50px rgba(35, 20, 15, 0.07);
+  --shadow-accent:     0 8px 24px rgba(184, 74, 43, 0.18);
+
+  --font-display:      'Playfair Display', Georgia, serif;
+  --font-sans:         'Plus Jakarta Sans', 'Outfit', sans-serif;
+  --transition:        all 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+[data-theme="dark"] {
+  --bg-base:        #08090C;
+  --bg-card:        #111319;
+  --bg-elevated:    #161922;
+  --bg-hover:       rgba(255, 255, 255, 0.04);
+  --border:         rgba(255, 255, 255, 0.07);
+  --border-hover:   rgba(224, 90, 56, 0.35);
+  --border-accent:  rgba(224, 90, 56, 0.45);
+
   --terracotta:        #E05A38;
   --terracotta-light:  #F0704E;
   --terracotta-dark:   #B53F20;
+  --terracotta-bg:     rgba(224, 90, 56, 0.12);
   --accent:            #E05A38;
   --accent-light:      #F0704E;
   --accent-dark:       #B53F20;
-  --accent-glow:       rgba(224, 90, 56, 0.16);
+  --accent-glow:       rgba(224, 90, 56, 0.18);
 
-  /* Olive & Emerald Success */
   --olive:             #10B981;
   --olive-light:       #34D399;
   --olive-dark:        #059669;
@@ -68,15 +131,8 @@
   --success:           #10B981;
   --success-bg:        rgba(16, 185, 129, 0.12);
 
-  /* Soft Limestone surfaces */
-  --limestone:         #E2E8F0;
-  --limestone-light:   #F8FAFC;
-
-  /* Deep Structural Grounding */
-  --deep-rust:         #1F1614;
-  --deep-rust-dark:    #15100E;
-
-  /* Status Colors */
+  --gold:              #F59E0B;
+  --gold-bg:           rgba(245, 158, 11, 0.12);
   --warning:           #F59E0B;
   --warning-bg:        rgba(245, 158, 11, 0.12);
   --danger:            #EF4444;
@@ -84,22 +140,15 @@
   --info:              #38BDF8;
   --info-bg:           rgba(56, 189, 248, 0.12);
 
-  /* Crisp High-Contrast Typography */
   --text-primary:      #F8FAFC;
   --text-secondary:    #94A3B8;
   --text-muted:        #64748B;
 
-  --sidebar-w:     260px;
-  --radius:        14px;
-  --radius-sm:     8px;
-  --radius-lg:     20px;
-
-  --shadow-sm:     0 2px 8px rgba(0,0,0,0.3);
-  --shadow-md:     0 4px 20px rgba(0,0,0,0.4);
-  --shadow-lg:     0 12px 40px rgba(0,0,0,0.55);
-  --shadow-accent: 0 4px 20px rgba(224, 90, 56, 0.25);
-
-  --transition:    all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  --sidebar-bg:        #0D0F14;
+  --shadow-sm:         0 2px 8px rgba(0,0,0,0.3);
+  --shadow-md:         0 8px 24px rgba(0,0,0,0.4);
+  --shadow-lg:         0 20px 60px rgba(0,0,0,0.6);
+  --shadow-accent:     0 8px 24px rgba(224, 90, 56, 0.3);
 }
 
 
@@ -154,15 +203,15 @@ img { max-width: 100%; display: block; }
   width: 100%;
 }
 
-/* ── Ambient Obsidian Glow Mesh ──────────────────────────── */
+/* ── Ambient Haute Ivory & Silk Mesh ──────────────────────────── */
 body::before {
   content: '';
   position: fixed;
   top: 0; left: 0;
   width: 100%; height: 100%;
   background:
-    radial-gradient(ellipse 70% 45% at 50% -5%, rgba(224, 90, 56, 0.08) 0%, transparent 60%),
-    radial-gradient(ellipse 50% 35% at 95% 100%, rgba(16, 185, 129, 0.04) 0%, transparent 55%);
+    radial-gradient(ellipse 70% 45% at 50% -5%, rgba(184, 74, 43, 0.04) 0%, transparent 60%),
+    radial-gradient(ellipse 50% 35% at 95% 100%, rgba(77, 110, 72, 0.03) 0%, transparent 55%);
   pointer-events: none;
   z-index: 0;
 }
@@ -172,17 +221,18 @@ body::before {
   background: var(--bg-card);
   border: 1px solid var(--border);
   border-radius: var(--radius);
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
+  box-shadow: var(--shadow-sm);
   transition: var(--transition);
   position: relative;
   z-index: 1;
 }
 
-.card:hover { border-color: rgba(181, 84, 58, 0.35); }
+.card:hover {
+  box-shadow: var(--shadow-md);
+  border-color: var(--border-hover);
+}
 .card-body { padding: 1.5rem; }
-.card-header { padding: 1.25rem 1.5rem; border-bottom: 1px solid var(--border); background: rgba(58, 31, 24, 0.3); }
+.card-header { padding: 1.25rem 1.5rem; border-bottom: 1px solid var(--border); background: var(--bg-elevated); }
 
 .card-glow {
   border-color: var(--border-accent);
@@ -314,7 +364,7 @@ body::before {
 
 .form-control {
   width: 100%;
-  background: rgba(30, 16, 13, 0.75);
+  background: var(--bg-card);
   border: 1px solid var(--border);
   border-radius: var(--radius-sm);
   padding: 0.65rem 0.9rem;
@@ -325,13 +375,13 @@ body::before {
 
 .form-control:focus {
   border-color: var(--terracotta);
-  background: rgba(45, 25, 20, 0.85);
-  box-shadow: 0 0 0 3px rgba(181, 84, 58, 0.2);
+  background: var(--bg-card);
+  box-shadow: 0 0 0 3px var(--accent-glow);
 }
 
 .form-control::placeholder { color: var(--text-muted); }
 
-select.form-control option { background: #261511; color: var(--text-primary); }
+select.form-control option { background: var(--bg-card); color: var(--text-primary); }
 
 /* ── Badges / Status — Curated Earthy Palette ────────────────── */
 .badge {
@@ -370,14 +420,14 @@ table {
 }
 
 thead th {
-  background: rgba(58, 31, 24, 0.35);
+  background: var(--bg-elevated);
   padding: 0.875rem 1rem;
   text-align: left;
   font-size: 0.72rem;
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.08em;
-  color: var(--text-secondary);
+  color: var(--text-muted);
   border-bottom: 1px solid var(--border);
   white-space: nowrap;
 }
@@ -387,7 +437,7 @@ tbody tr {
   transition: var(--transition);
 }
 
-tbody tr:hover { background: rgba(181, 84, 58, 0.06); }
+tbody tr:hover { background: var(--bg-hover); }
 tbody tr:last-child { border-bottom: none; }
 
 tbody td {
@@ -402,14 +452,16 @@ tbody td {
   top: 0; left: 0;
   width: var(--sidebar-w);
   height: 100vh;
-  background: #0E1016;
+  background: var(--sidebar-bg);
   border-right: 1px solid var(--border);
-  backdrop-filter: blur(30px);
+  box-shadow: 2px 0 24px rgba(35, 20, 15, 0.03);
+  backdrop-filter: blur(20px);
   display: flex;
   flex-direction: column;
   z-index: 1000;
   overflow-y: auto;
   overflow-x: hidden;
+  transition: var(--transition);
 }
 
 .sidebar-logo {
@@ -417,75 +469,80 @@ tbody td {
   border-bottom: 1px solid var(--border);
   display: flex;
   align-items: center;
-  gap: 0.75rem;
+  gap: 0.85rem;
 }
 
 .sidebar-logo-icon {
-  width: 38px; height: 38px;
-  background: linear-gradient(135deg, var(--terracotta), var(--deep-rust));
-  border-radius: 10px;
+  width: 40px; height: 40px;
+  background: linear-gradient(135deg, var(--terracotta), var(--terracotta-dark));
+  border-radius: 12px;
   display: flex; align-items: center; justify-content: center;
   font-size: 1.2rem;
   flex-shrink: 0;
-  box-shadow: 0 4px 12px rgba(181, 84, 58, 0.3);
+  box-shadow: 0 4px 14px var(--accent-glow);
+  border: 1px solid rgba(255, 255, 255, 0.15);
 }
 
 .sidebar-logo-text h2 {
-  font-family: 'Outfit', sans-serif;
-  font-size: 1.05rem;
-  font-weight: 800;
-  color: var(--limestone-light);
-  line-height: 1.2;
+  font-family: var(--font-display);
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  line-height: 1.15;
+  letter-spacing: -0.01em;
 }
 
 .sidebar-logo-text span {
-  font-size: 0.65rem;
-  color: var(--terracotta-light);
+  font-family: var(--font-sans);
+  font-size: 0.68rem;
+  color: var(--terracotta);
   text-transform: uppercase;
-  letter-spacing: 0.1em;
+  letter-spacing: 0.14em;
   font-weight: 700;
 }
 
-.sidebar-nav { flex: 1; padding: 1rem 0.75rem; }
+.sidebar-nav { flex: 1; padding: 1.25rem 0.85rem; }
 .sidebar-section-label {
-  font-size: 0.64rem;
+  font-size: 0.65rem;
   font-weight: 700;
   text-transform: uppercase;
-  letter-spacing: 0.12em;
+  letter-spacing: 0.14em;
   color: var(--text-muted);
-  padding: 1rem 0.5rem 0.4rem;
+  padding: 1.1rem 0.65rem 0.45rem;
 }
 
 .sidebar-link {
   display: flex;
   align-items: center;
   gap: 0.75rem;
-  padding: 0.65rem 0.75rem;
+  padding: 0.68rem 0.85rem;
   border-radius: var(--radius-sm);
   color: var(--text-secondary);
   font-size: 0.875rem;
   font-weight: 500;
   transition: var(--transition);
-  margin-bottom: 2px;
+  margin-bottom: 3px;
   position: relative;
 }
 
 .sidebar-link:hover {
-  background: rgba(181, 84, 58, 0.1);
+  background: var(--bg-hover);
   color: var(--text-primary);
+  transform: translateX(2px);
 }
 
 .sidebar-link.active {
-  background: linear-gradient(135deg, rgba(181, 84, 58, 0.25), rgba(181, 84, 58, 0.08));
-  color: var(--limestone-light);
-  border: 1px solid rgba(181, 84, 58, 0.35);
+  background: var(--terracotta-bg);
+  color: var(--terracotta);
+  border: 1px solid var(--border-accent);
   font-weight: 700;
+  box-shadow: 0 2px 10px rgba(184, 74, 43, 0.08);
 }
 
 .sidebar-link.active::before {
   content: '';
   position: absolute;
-  left: 0; top: 20%; bottom: 20%;
+  left: 0; top: 18%; bottom: 18%;
   width: 3.5px;
   background: var(--terracotta);
   border-radius: 0 3px 3px 0;
@@ -496,7 +553,7 @@ tbody td {
 .sidebar-badge {
   margin-left: auto;
   background: var(--terracotta);
-  color: #FAF7F2;
+  color: #FFFFFF;
   font-size: 0.65rem;
   font-weight: 800;
   padding: 0.15rem 0.5rem;
@@ -504,58 +561,72 @@ tbody td {
 }
 
 .sidebar-footer {
-  padding: 1rem 0.75rem;
+  padding: 1.25rem 0.85rem;
   border-top: 1px solid var(--border);
+  background: var(--bg-elevated);
 }
 
 .sidebar-user {
   display: flex;
   align-items: center;
   gap: 0.75rem;
-  padding: 0.75rem;
+  padding: 0.75rem 0.85rem;
   border-radius: var(--radius-sm);
-  background: #141720;
+  background: var(--bg-card);
   border: 1px solid var(--border);
+  box-shadow: var(--shadow-sm);
 }
 
 .sidebar-avatar {
   width: 36px; height: 36px;
   border-radius: 50%;
-  background: linear-gradient(135deg, var(--terracotta), var(--deep-rust));
+  background: linear-gradient(135deg, var(--terracotta), var(--terracotta-dark));
   display: flex; align-items: center; justify-content: center;
   font-weight: 700;
-  font-size: 0.9rem;
-  color: #FAF7F2;
+  font-size: 0.85rem;
+  color: #FFFFFF;
   flex-shrink: 0;
-  box-shadow: 0 2px 8px rgba(181, 84, 58, 0.25);
+  box-shadow: 0 2px 8px var(--accent-glow);
 }
 
 .sidebar-user-info p { font-size: 0.85rem; font-weight: 600; line-height: 1.2; color: var(--text-primary); }
-.sidebar-user-info span { font-size: 0.7rem; color: var(--olive-light); text-transform: capitalize; font-weight: 600; }
+.sidebar-user-info span { font-size: 0.7rem; color: var(--olive); text-transform: capitalize; font-weight: 700; }
 
 /* ── Topbar — Warm Frosted Glass ─────────────────────────────── */
 .topbar {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 1rem 2rem;
+  padding: 1rem 2.5rem;
   border-bottom: 1px solid var(--border);
-  background: rgba(25, 14, 11, 0.88);
+  background: var(--bg-card);
   backdrop-filter: blur(20px);
   position: sticky;
   top: 0;
   z-index: 100;
+  box-shadow: var(--shadow-sm);
 }
 
-.topbar-title h1 { font-size: 1.25rem; font-weight: 700; color: var(--text-primary); }
-.topbar-title p { font-size: 0.8rem; color: var(--text-muted); margin-top: 1px; }
+.topbar-title h1 {
+  font-family: var(--font-display);
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  letter-spacing: -0.01em;
+}
+.topbar-title p {
+  font-family: var(--font-sans);
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  margin-top: 2px;
+}
 
 .topbar-actions { display: flex; align-items: center; gap: 0.75rem; }
 
 .topbar-icon-btn {
   width: 38px; height: 38px;
   border-radius: var(--radius-sm);
-  background: rgba(255,255,255,0.04);
+  background: var(--bg-elevated);
   border: 1px solid var(--border);
   color: var(--text-secondary);
   display: flex; align-items: center; justify-content: center;
@@ -564,7 +635,12 @@ tbody td {
   cursor: pointer;
 }
 
-.topbar-icon-btn:hover { background: rgba(181, 84, 58, 0.15); color: var(--text-primary); border-color: rgba(181, 84, 58, 0.35); }
+.topbar-icon-btn:hover {
+  background: var(--bg-hover);
+  color: var(--terracotta);
+  border-color: var(--border-hover);
+  transform: translateY(-1px);
+}
 
 /* ── Page Header ─────────────────────────────────────────────── */
 .page-header {

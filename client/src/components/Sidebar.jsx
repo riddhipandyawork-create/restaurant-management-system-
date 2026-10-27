@@ -1,8 +1,10 @@
 import { NavLink, useNavigate } from 'react-router-dom';
 import { useAuthStore } from '../store/authStore';
+import { useThemeStore } from '../store/themeStore';
 import {
   LayoutDashboard, UtensilsCrossed, ShoppingCart, Table2,
-  ChefHat, CalendarDays, Receipt, Users, BarChart3, LogOut, Store, PlusCircle
+  ChefHat, CalendarDays, Receipt, Users, BarChart3, LogOut, Store, PlusCircle,
+  Sun, Moon
 } from 'lucide-react';
 
 const NAV = [
@@ -26,6 +28,7 @@ const NAV = [
 
 export default function Sidebar() {
   const { user, logout } = useAuthStore();
+  const { theme, toggleTheme } = useThemeStore();
   const navigate = useNavigate();
 
   const handleLogout = () => { logout(); navigate('/login'); };
@@ -91,11 +94,44 @@ export default function Sidebar() {
         </div>
         
         <button 
+          onClick={toggleTheme}
+          className="btn"
+          style={{
+            width: '100%',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            gap: '0.5rem',
+            background: 'var(--bg-card)',
+            color: 'var(--text-primary)',
+            border: '1px solid var(--border)',
+            fontSize: '0.78rem',
+            fontWeight: 700,
+            padding: '0.55rem',
+            borderRadius: '10px',
+            boxShadow: 'var(--shadow-sm)',
+            cursor: 'pointer',
+          }}
+        >
+          {theme === 'light' ? (
+            <>
+              <Moon size={14} color="var(--terracotta)" />
+              <span>Noir Obsidian Mode</span>
+            </>
+          ) : (
+            <>
+              <Sun size={14} color="var(--gold)" />
+              <span>Atelier Ivory Mode</span>
+            </>
+          )}
+        </button>
+
+        <button 
           onClick={handleLogout} 
           className="btn" 
-          style={{ width: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.5rem', background: 'rgba(239, 68, 68, 0.1)', color: 'var(--danger)', border: '1px solid rgba(239, 68, 68, 0.2)' }}
+          style={{ width: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.5rem', background: 'var(--danger-bg)', color: 'var(--danger)', border: '1px solid rgba(200, 62, 45, 0.25)', fontSize: '0.8rem', fontWeight: 600, borderRadius: '10px' }}
         >
-          <LogOut size={16} />
+          <LogOut size={15} />
           Log Out
         </button>
       </div>
