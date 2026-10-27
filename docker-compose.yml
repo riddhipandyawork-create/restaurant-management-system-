@@ -1,0 +1,73 @@
+version: '3.8'
+
+services:
+  # MongoDB Database Service
+  mongodb:
+    image: mongo:6.0
+    container_name: rms-mongodb
+    restart: always
+    ports:
+      - "27017:27017"
+    environment:
+      MONGO_INITDB_DATABASE: rms_db
+    volumes:
+      - mongo_data:/data/db
+    networks:
+      - rms-network
+
+  # Express REST API & Socket.io Backend
+  server:
+    build:
+      context: ./server
+      dockerfile: Dockerfile
+    container_name: rms-api-server
+    restart: always
+    ports:
+      - "5000:5000"
+    environment:
+      PORT: 5000
+      MONGO_URI: mongodb://mongodb:27017/rms_db
+      NODE_ENV: production
+      JWT_SECRET: rms_super_secret_production_key_2026
+      CLIENT_URL: http://localhost:5180
+      CUSTOMER_URL: http://localhost:5174
+    depends_on:
+      - mongodb
+    networks:
+      - rms-network
+
+  # Staff Management & Executive Dashboard Portal (Vite + Nginx)
+  admin-client:
+    build:
+      context: ./client
+      dockerfile: Dockerfile
+    container_name: rms-staff-portal
+    restart: always
+    ports:
+      - "5180:80"
+    depends_on:
+      - server
+    networks:
+      - rms-network
+
+  # Customer Dining & Online Ordering Portal (Vite + Nginx)
+  customer-portal:
+    build:
+      context: ./customer
+      dockerfile: Dockerfile
+    container_name: rms-customer-portal
+    restart: always
+    ports:
+      - "5174:80"
+    depends_on:
+      - server
+    networks:
+      - rms-network
+
+networks:
+  rms-network:
+    driver: bridge
+
+volumes:
+  mongo_data:
+    driver: local

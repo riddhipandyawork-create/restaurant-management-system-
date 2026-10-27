@@ -1,0 +1,71 @@
+name: RMS Continuous Integration (CI)
+
+on:
+  push:
+    branches: [ main, dev ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  backend-test:
+    name: Backend API & Jest Test Suite
+    runs-on: ubuntu-latest
+
+    services:
+      mongodb:
+        image: mongo:6.0
+        ports:
+          - 27017:27017
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js 18.x
+        uses: actions/setup-node@v4
+        with:
+          node-version: 18.x
+          cache: 'npm'
+          cache-dependency-path: server/package-lock.json
+
+      - name: Install Server Dependencies
+        run: |
+          cd server
+          npm ci
+
+      - name: Run Jest & Supertest Automated Suites
+        env:
+          NODE_ENV: test
+          MONGO_URI: mongodb://localhost:27017/rms_test
+          JWT_SECRET: test_jwt_secret_key_12345
+        run: |
+          cd server
+          npm test
+
+  frontend-build:
+    name: Frontend Build & Lint Verification
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        app: [client, customer]
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js 18.x
+        uses: actions/setup-node@v4
+        with:
+          node-version: 18.x
+          cache: 'npm'
+          cache-dependency-path: ${{ matrix.app }}/package-lock.json
+
+      - name: Install Dependencies
+        run: |
+          cd ${{ matrix.app }}
+          npm ci
+
+      - name: Build Production Bundle
+        run: |
+          cd ${{ matrix.app }}
+          npm run build
