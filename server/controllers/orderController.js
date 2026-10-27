@@ -148,7 +148,7 @@ exports.getDashboardStats = async (req, res) => {
     const startOfDay = new Date(today.setHours(0, 0, 0, 0));
     const endOfDay = new Date(today.setHours(23, 59, 59, 999));
 
-    const [todayOrders, totalOrders, revenue, topItems] = await Promise.all([
+    const [todayOrders, totalOrders, revenue, topItems, pendingKitchen, occupiedTables, totalTables, recentOrders] = await Promise.all([
       Order.countDocuments({ createdAt: { $gte: startOfDay, $lte: endOfDay } }),
       Order.countDocuments(),
       Order.aggregate([
@@ -161,6 +161,10 @@ exports.getDashboardStats = async (req, res) => {
         { $sort: { count: -1 } },
         { $limit: 5 },
       ]),
+      Order.countDocuments({ status: { $in: ['confirmed', 'preparing'] } }),
+      Table.countDocuments({ status: 'occupied' }),
+      Table.countDocuments(),
+      Order.find().sort({ createdAt: -1 }).limit(6).populate('table', 'number capacity status'),
     ]);
 
     const last7Days = await Order.aggregate([
@@ -186,6 +190,10 @@ exports.getDashboardStats = async (req, res) => {
       todayRevenue: revenue[0]?.total || 0,
       topItems,
       last7Days,
+      pendingKitchen,
+      occupiedTables,
+      totalTables,
+      recentOrders,
     });
   } catch (err) { res.status(500).json({ message: err.message }); }
 };

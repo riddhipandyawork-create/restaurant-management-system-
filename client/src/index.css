@@ -43,63 +43,63 @@
    - Soft Limestone:  #F0E6D8 / #FAF7F2
    - Deep Rust:       #5A2E25 / #3A1F18 / #1C110D ─────────────────── */
 :root {
-  --bg-base:       #190E0B;
-  --bg-card:       rgba(42, 23, 19, 0.88);
-  --bg-elevated:   rgba(56, 31, 25, 0.94);
-  --bg-hover:      rgba(181, 84, 58, 0.15);
-  --border:        rgba(181, 84, 58, 0.2);
-  --border-accent: rgba(181, 84, 58, 0.45);
+  --bg-base:       #0B0D11;
+  --bg-card:       #12151B;
+  --bg-elevated:   #181C24;
+  --bg-hover:      rgba(255, 255, 255, 0.04);
+  --border:        rgba(255, 255, 255, 0.08);
+  --border-accent: rgba(224, 90, 56, 0.35);
 
-  /* Terracotta Clay (Primary Accent) */
-  --terracotta:        #B5543A;
-  --terracotta-light:  #C8644A;
-  --terracotta-dark:   #933F29;
-  --accent:            #B5543A;
-  --accent-light:      #C8644A;
-  --accent-dark:       #933F29;
-  --accent-glow:       rgba(181, 84, 58, 0.24);
+  /* Terracotta & Warm Luxury Accents */
+  --terracotta:        #E05A38;
+  --terracotta-light:  #F0704E;
+  --terracotta-dark:   #B53F20;
+  --accent:            #E05A38;
+  --accent-light:      #F0704E;
+  --accent-dark:       #B53F20;
+  --accent-glow:       rgba(224, 90, 56, 0.16);
 
-  /* Olive Accent (Secondary / Fresh / Ready) */
-  --olive:             #6F7F5F;
-  --olive-light:       #839772;
-  --olive-dark:        #4E5D42;
-  --olive-bg:          rgba(111, 127, 95, 0.16);
-  --olive-border:      rgba(111, 127, 95, 0.35);
-  --success:           #6F7F5F;
-  --success-bg:        rgba(111, 127, 95, 0.18);
+  /* Olive & Emerald Success */
+  --olive:             #10B981;
+  --olive-light:       #34D399;
+  --olive-dark:        #059669;
+  --olive-bg:          rgba(16, 185, 129, 0.12);
+  --olive-border:      rgba(16, 185, 129, 0.25);
+  --success:           #10B981;
+  --success-bg:        rgba(16, 185, 129, 0.12);
 
-  /* Soft Limestone (Crisp surfaces & contrast) */
-  --limestone:         #F0E6D8;
-  --limestone-light:   #FAF7F2;
+  /* Soft Limestone surfaces */
+  --limestone:         #E2E8F0;
+  --limestone-light:   #F8FAFC;
 
-  /* Deep Rust (Warm structural grounding) */
-  --deep-rust:         #5A2E25;
-  --deep-rust-dark:    #3A1F18;
+  /* Deep Structural Grounding */
+  --deep-rust:         #1F1614;
+  --deep-rust-dark:    #15100E;
 
   /* Status Colors */
-  --warning:           #D48B38;
-  --warning-bg:        rgba(212, 139, 56, 0.16);
-  --danger:            #C5432B;
-  --danger-bg:         rgba(197, 67, 43, 0.16);
-  --info:              #839772;
-  --info-bg:           rgba(131, 151, 114, 0.16);
+  --warning:           #F59E0B;
+  --warning-bg:        rgba(245, 158, 11, 0.12);
+  --danger:            #EF4444;
+  --danger-bg:         rgba(239, 68, 68, 0.12);
+  --info:              #38BDF8;
+  --info-bg:           rgba(56, 189, 248, 0.12);
 
-  /* High-Contrast Limestone Typography */
-  --text-primary:      #FAF7F2;
-  --text-secondary:    #D8C9BE;
-  --text-muted:        #9E887E;
+  /* Crisp High-Contrast Typography */
+  --text-primary:      #F8FAFC;
+  --text-secondary:    #94A3B8;
+  --text-muted:        #64748B;
 
   --sidebar-w:     260px;
   --radius:        14px;
   --radius-sm:     8px;
   --radius-lg:     20px;
 
-  --shadow-sm:     0 2px 8px rgba(0,0,0,0.35);
-  --shadow-md:     0 4px 20px rgba(0,0,0,0.45);
-  --shadow-lg:     0 8px 40px rgba(28, 17, 13, 0.6);
-  --shadow-accent: 0 4px 20px rgba(181, 84, 58, 0.35);
+  --shadow-sm:     0 2px 8px rgba(0,0,0,0.3);
+  --shadow-md:     0 4px 20px rgba(0,0,0,0.4);
+  --shadow-lg:     0 12px 40px rgba(0,0,0,0.55);
+  --shadow-accent: 0 4px 20px rgba(224, 90, 56, 0.25);
 
-  --transition:    all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  --transition:    all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 
@@ -154,16 +154,15 @@ img { max-width: 100%; display: block; }
   width: 100%;
 }
 
-/* ── Warm Background gradient mesh ──────────────────────────── */
+/* ── Ambient Obsidian Glow Mesh ──────────────────────────── */
 body::before {
   content: '';
   position: fixed;
   top: 0; left: 0;
   width: 100%; height: 100%;
   background:
-    radial-gradient(ellipse 75% 45% at 20% 0%, rgba(181, 84, 58, 0.12) 0%, transparent 60%),
-    radial-gradient(ellipse 65% 40% at 85% 100%, rgba(111, 127, 95, 0.1) 0%, transparent 60%),
-    radial-gradient(circle at 50% 50%, rgba(90, 46, 37, 0.05) 0%, transparent 70%);
+    radial-gradient(ellipse 70% 45% at 50% -5%, rgba(224, 90, 56, 0.08) 0%, transparent 60%),
+    radial-gradient(ellipse 50% 35% at 95% 100%, rgba(16, 185, 129, 0.04) 0%, transparent 55%);
   pointer-events: none;
   z-index: 0;
 }
@@ -173,6 +172,7 @@ body::before {
   background: var(--bg-card);
   border: 1px solid var(--border);
   border-radius: var(--radius);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
   transition: var(--transition);
@@ -402,7 +402,7 @@ tbody td {
   top: 0; left: 0;
   width: var(--sidebar-w);
   height: 100vh;
-  background: #1C0F0C;
+  background: #0E1016;
   border-right: 1px solid var(--border);
   backdrop-filter: blur(30px);
   display: flex;
@@ -514,8 +514,8 @@ tbody td {
   gap: 0.75rem;
   padding: 0.75rem;
   border-radius: var(--radius-sm);
-  background: rgba(58, 31, 24, 0.45);
-  border: 1px solid rgba(181, 84, 58, 0.18);
+  background: #141720;
+  border: 1px solid var(--border);
 }
 
 .sidebar-avatar {
