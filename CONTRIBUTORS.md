@@ -24,8 +24,10 @@ This document outlines the roles, responsibilities, and specific contributions o
 - **State Management & Services:** Implemented global state management using Zustand and built the unified Axios API service layer (`client/src/services` & `customer/src/services`).
 - **UI Design System:** Maintained design tokens, reusable UI components (Navbars, Modals, Drawer cart, Sidebars), and project documentation.
 
-## 4. [Member 4 Name/ID] - DevOps & Configuration Engineer
-*Provided build tooling support and initial repository scaffolding.*
-- **Build Configurations:** Configured the Vite, Tailwind CSS, and PostCSS build environments for both frontend applications.
-- **Repository Setup:** Handled the initial GitHub repository boilerplate, package dependencies (`package.json`), and ignore files (`.gitignore`).
-- **Static Assets:** Managed static HTML entry points and global CSS variable initialization.
+## 4. Kosamia Krishraj (24bt04055) - DevOps, Build Tooling & Infrastructure Lead
+*Responsible for the technical foundation, build automation, bundler architectures (Vite), CSS post-processing pipelines (Tailwind CSS, PostCSS), containerization (Docker Compose), CI/CD workflows, and development bootstrapping.*
+- **Build Configurations:** Configured Vite bundlers, path aliases, development proxy routing, Tailwind CSS design system, and PostCSS vendor prefix pipelines.
+- **Repository Setup & Security:** Handled package dependency manifests (`package.json`), version locking, root and sub-project `.gitignore` protection rules, and Oxlint code quality rules.
+- **Static Assets & Entry Points:** Established HTML5 entry mounts, Google Fonts typography preloading, and React root bootstrapping.
+- **DevOps & Containerization:** Implemented multi-stage Docker containerization, Nginx reverse proxies, Docker Compose orchestration, and `start-dev.bat` multi-service bootstrapper.
+- **Continuous Integration (CI):** Designed automated GitHub Actions CI pipeline testing Jest suites and Vite bundle compilation on every push.
