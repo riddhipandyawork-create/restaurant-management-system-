@@ -6,6 +6,7 @@ import AboutSection from '../components/AboutSection';
 
 const FEATURED = [
   { 
+    _id: '6ac49f3da43d9d4191fb7e0b',
     name: 'Special Ghee Roast Dosa', 
     desc: 'Crispy crepe roasted on iron tawas in pure A2 ghee, served with our signature 4 chutneys & hot drumstick sambar.', 
     price: 220, 
@@ -16,6 +17,7 @@ const FEATURED = [
     accent: 'var(--terracotta)'
   },
   { 
+    _id: '6ac49f3da43d9d4191fb7dfb',
     name: 'Thatte Idli with Ghee Podi', 
     desc: 'Soft, plate-sized steamed Kaveri rice cakes soaked in aromatic gunpowder podi and melted golden ghee.', 
     price: 140, 
@@ -26,6 +28,7 @@ const FEATURED = [
     accent: 'var(--olive)'
   },
   { 
+    _id: '6ac49f3da43d9d4191fb7e02',
     name: 'Mysore Masala Dosa', 
     desc: 'Fiery spiced red shallot-garlic chutney spread with tempered spiced potato mash, cooked crisp.', 
     price: 180, 
@@ -36,6 +39,7 @@ const FEATURED = [
     accent: 'var(--terracotta)'
   },
   { 
+    _id: '6ac49f3da43d9d4191fb7e3a',
     name: 'Kumbakonam Degree Kaapi', 
     desc: 'Hand-roasted plantation peaberry & chicory decoction frothed with thick farm-fresh milk in brass dabarah.', 
     price: 80, 
@@ -399,7 +403,7 @@ export default function Landing() {
                           border: `1px solid ${item.accent}`,
                         }}>
                           <button
-                            onClick={() => removeItem(cartItem.menuItem || cartItem.name)}
+                            onClick={() => removeItem(cartItem?.menuItem || item._id)}
                             style={{
                               width: '28px', height: '28px',
                               borderRadius: '4px',
@@ -416,7 +420,7 @@ export default function Landing() {
                             {quantity} added
                           </span>
                           <button
-                            onClick={() => addItem({ ...item, _id: item.name })}
+                            onClick={() => addItem(item)}
                             style={{
                               width: '28px', height: '28px',
                               borderRadius: '4px',
@@ -432,7 +436,7 @@ export default function Landing() {
                         </div>
                       ) : (
                         <button
-                          onClick={() => addItem({ ...item, _id: item.name })}
+                          onClick={() => addItem(item)}
                           style={{
                             width: '100%',
                             padding: '0.65rem 1rem',

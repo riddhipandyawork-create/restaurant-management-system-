@@ -57,6 +57,40 @@ exports.createOrder = async (req, res) => {
       delete body.tableNumber;
     }
 
+    // Resolve and sanitize items.menuItem
+    if (body.items && Array.isArray(body.items)) {
+      const MenuItem = require('../models/MenuItem');
+      const mongoose = require('mongoose');
+
+      for (let i = 0; i < body.items.length; i++) {
+        const item = body.items[i];
+        const rawId = item.menuItem;
+        const isValidHex = rawId && typeof rawId === 'string' && /^[0-9a-fA-F]{24}$/.test(rawId);
+
+        if (!isValidHex) {
+          // Look up MenuItem by dish name
+          const searchName = item.name || (typeof rawId === 'string' ? rawId : '');
+          let match = null;
+          if (searchName) {
+            match = await MenuItem.findOne({ name: new RegExp('^' + searchName.replace(/[.*+?^${}()|[\]\\]/g, '\\$&') + '$', 'i') });
+            if (!match) {
+              // Partial search fallback (e.g., 'Ghee Roast Dosa' for 'Special Ghee Roast Dosa')
+              const keywords = searchName.split(' ').filter(w => w.length > 3);
+              if (keywords.length > 0) {
+                match = await MenuItem.findOne({ name: new RegExp(keywords.join('|'), 'i') });
+              }
+            }
+          }
+          if (match) {
+            item.menuItem = match._id;
+          } else {
+            // Delete invalid string so Mongoose doesn't fail Cast to ObjectId
+            delete item.menuItem;
+          }
+        }
+      }
+    }
+
     const order = await Order.create(body);
     
     // Auto Inventory Deduction

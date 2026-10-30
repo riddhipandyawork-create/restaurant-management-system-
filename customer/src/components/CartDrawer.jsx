@@ -35,12 +35,15 @@ export default function CartDrawer() {
         type: 'dine-in',
         tableNumber: tableNumber.trim(),
         customerName: customerName.trim(),
-        items: cart.map(i => ({
-          menuItem: i.menuItem,
-          name: i.name,
-          price: i.price,
-          quantity: i.quantity,
-        })),
+        items: cart.map(i => {
+          const isValidHex = typeof i.menuItem === 'string' && /^[0-9a-fA-F]{24}$/.test(i.menuItem);
+          return {
+            ...(isValidHex ? { menuItem: i.menuItem } : {}),
+            name: i.name,
+            price: i.price,
+            quantity: i.quantity,
+          };
+        }),
       };
       const res = await api.post('/orders', payload);
       toast.success(`Order #${res.data.orderNumber} placed! 🍽️`);
