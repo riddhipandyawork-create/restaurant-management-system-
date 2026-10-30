@@ -122,7 +122,19 @@ export default function Staff() {
                   <tr key={s._id} style={{ borderBottom: '1px solid rgba(255,255,255,0.05)' }}>
                     <td style={{ padding: '1rem 1.5rem' }}>
                       <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
-                        <div className={ROLE_COLORS[s.role]} style={{ width: '40px', height: '40px', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: 800, fontSize: '0.85rem', background: 'rgba(255,255,255,0.05)', border: '1px solid rgba(255,255,255,0.1)' }}>
+                        <div style={{ 
+                          width: '40px', 
+                          height: '40px', 
+                          borderRadius: '50%', 
+                          display: 'flex', 
+                          alignItems: 'center', 
+                          justifyContent: 'center', 
+                          fontWeight: 800, 
+                          fontSize: '0.85rem', 
+                          background: ROLE_STYLES[s.role]?.background || 'rgba(255,255,255,0.05)', 
+                          color: ROLE_STYLES[s.role]?.color || 'var(--accent)',
+                          border: ROLE_STYLES[s.role]?.border || '1px solid rgba(255,255,255,0.1)' 
+                        }}>
                           {s.name?.split(' ').map(n => n[0]).join('').slice(0, 2)}
                         </div>
                         <div>

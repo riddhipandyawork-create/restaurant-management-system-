@@ -1,5 +1,5 @@
 import { useEffect, useState, useCallback } from 'react';
-import { Receipt, Clock, CheckCircle2, ChevronRight, User, Check, Utensils, CreditCard, XCircle, FileText } from 'lucide-react';
+import { Receipt, Clock, CheckCircle2, ChevronRight, User, Check, Utensils, CreditCard, XCircle, FileText, ArrowUpDown } from 'lucide-react';
 import api from '../../services/api';
 import toast from 'react-hot-toast';
 
@@ -20,27 +20,31 @@ export default function Orders() {
   const [loading, setLoading] = useState(true);
   const [statusFilter, setStatusFilter] = useState('');
   const [selectedOrder, setSelectedOrder] = useState(null);
+  const [sortAsc, setSortAsc] = useState(true); // Default to ascending order (oldest first / queue order)
 
   const fetchOrders = useCallback(async (isBackground = false) => {
     if (!isBackground) setLoading(true);
     try {
-      const params = {};
+      const params = { sort: sortAsc ? 'asc' : 'desc' };
       if (statusFilter) params.status = statusFilter;
       const { data } = await api.get('/orders', { params });
-      setOrders(data.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt)));
+      const sorted = [...data].sort((a, b) => 
+        sortAsc ? (new Date(a.createdAt) - new Date(b.createdAt)) : (new Date(b.createdAt) - new Date(a.createdAt))
+      );
+      setOrders(sorted);
       
       // Keep selected order updated
       setSelectedOrder(prev => {
-        if (!prev) return prev;
-        const updated = data.find(o => o._id === prev._id);
-        return updated || prev;
+        if (!prev) return sorted[0] || null;
+        const updated = sorted.find(o => o._id === prev._id);
+        return updated || sorted[0] || null;
       });
     } catch { 
       toast.error('Failed to load orders'); 
     } finally { 
       if (!isBackground) setLoading(false); 
     }
-  }, [statusFilter]);
+  }, [statusFilter, sortAsc]);
 
   useEffect(() => { fetchOrders(false); }, [fetchOrders]);
   useEffect(() => {
@@ -118,30 +122,58 @@ export default function Orders() {
     <div className="page-content" style={{ padding: '2rem', height: '100vh', display: 'flex', flexDirection: 'column', boxSizing: 'border-box', maxWidth: '1600px', margin: '0 auto' }}>
       
       {/* Header */}
-      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '2rem', flexShrink: 0 }}>
+      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '2rem', flexShrink: 0, flexWrap: 'wrap', gap: '1rem' }}>
         <div>
           <h2 style={{ fontSize: '1.75rem', fontWeight: 700, color: 'var(--text-primary)', display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
             <Receipt size={28} color="var(--accent)"/> Order Queue
           </h2>
-          <p style={{ color: 'var(--text-secondary)', marginTop: '0.25rem' }}>Manage and track all restaurant orders</p>
+          <p style={{ color: 'var(--text-secondary)', marginTop: '0.25rem' }}>
+            Manage and track all restaurant orders &middot; <strong style={{ color: 'var(--accent)' }}>{sortAsc ? 'Ascending by time (Oldest first)' : 'Descending by time (Newest first)'}</strong>
+          </p>
         </div>
         
-        {/* Status Filters */}
-        <div style={{ display: 'flex', gap: '0.5rem', background: 'rgba(255,255,255,0.02)', padding: '0.5rem', borderRadius: 'var(--radius)', border: '1px solid var(--border)' }}>
-          {['', 'pending', 'confirmed', 'preparing', 'ready', 'served'].map(s => (
-            <button 
-              key={s} 
-              onClick={() => setStatusFilter(s)}
-              style={{
-                padding: '0.5rem 1rem', borderRadius: 'var(--radius-sm)', fontSize: '0.85rem', fontWeight: 700, textTransform: 'capitalize', cursor: 'pointer',
-                background: statusFilter === s ? 'var(--accent)' : 'transparent',
-                color: statusFilter === s ? '#fff' : 'var(--text-secondary)',
-                border: 'none', transition: 'var(--transition)'
-              }}
-            >
-              {s || 'All Active'}
-            </button>
-          ))}
+        <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', flexWrap: 'wrap' }}>
+          {/* Chronological Sort Toggle */}
+          <button 
+            onClick={() => setSortAsc(prev => !prev)}
+            style={{
+              padding: '0.5rem 0.95rem',
+              borderRadius: 'var(--radius-sm)',
+              fontSize: '0.82rem',
+              fontWeight: 700,
+              cursor: 'pointer',
+              background: sortAsc ? 'var(--terracotta-bg)' : 'var(--bg-elevated)',
+              color: sortAsc ? 'var(--terracotta)' : 'var(--text-secondary)',
+              border: sortAsc ? '1px solid var(--border-hover)' : '1px solid var(--border)',
+              display: 'inline-flex',
+              alignItems: 'center',
+              gap: '0.45rem',
+              transition: 'var(--transition)',
+              boxShadow: 'var(--shadow-sm)'
+            }}
+            title="Toggle chronological order (Ascending / Descending)"
+          >
+            <ArrowUpDown size={15} color={sortAsc ? 'var(--terracotta)' : 'var(--text-muted)'} />
+            <span>{sortAsc ? 'Time: Ascending (Oldest First)' : 'Time: Descending (Newest First)'}</span>
+          </button>
+
+          {/* Status Filters */}
+          <div style={{ display: 'flex', gap: '0.4rem', background: 'var(--bg-elevated)', padding: '0.35rem', borderRadius: 'var(--radius)', border: '1px solid var(--border)' }}>
+            {['', 'pending', 'confirmed', 'preparing', 'ready', 'served'].map(s => (
+              <button 
+                key={s} 
+                onClick={() => setStatusFilter(s)}
+                style={{
+                  padding: '0.5rem 1rem', borderRadius: 'var(--radius-sm)', fontSize: '0.85rem', fontWeight: 700, textTransform: 'capitalize', cursor: 'pointer',
+                  background: statusFilter === s ? 'var(--accent)' : 'transparent',
+                  color: statusFilter === s ? '#fff' : 'var(--text-secondary)',
+                  border: 'none', transition: 'var(--transition)'
+                }}
+              >
+                {s || 'All Active'}
+              </button>
+            ))}
+          </div>
         </div>
       </div>
 

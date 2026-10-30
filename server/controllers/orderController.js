@@ -3,7 +3,7 @@ const Table = require('../models/Table');
 
 exports.getOrders = async (req, res) => {
   try {
-    const { status, type, date } = req.query;
+    const { status, type, date, sort = 'asc' } = req.query;
     const filter = {};
     if (status) filter.status = status;
     if (type) filter.type = type;
@@ -14,12 +14,13 @@ exports.getOrders = async (req, res) => {
         $lte: new Date(d.setHours(23, 59, 59, 999)),
       };
     }
+    const sortDirective = sort === 'desc' ? '-createdAt' : 'createdAt';
     const orders = await Order.find(filter)
       .populate('table', 'number label')
       .populate('waiter', 'name')
       .populate('chef', 'name')
       .populate('items.menuItem', 'name image')
-      .sort('-createdAt');
+      .sort(sortDirective);
     res.json(orders);
   } catch (err) { res.status(500).json({ message: err.message }); }
 };
