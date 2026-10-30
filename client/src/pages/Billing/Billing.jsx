@@ -37,10 +37,11 @@ export default function Billing() {
         status: 'completed'
       });
       toast.success('Payment successfully processed!');
+      // Update showBill state so staff sees the receipt and Payment Completed confirmation immediately
+      setShowBill(prev => ({ ...prev, status: 'billed', paymentStatus: 'paid' }));
       fetchOrders();
-      setShowBill(null);
     } catch (err) {
-      toast.error('Payment processing failed');
+      toast.error(err.response?.data?.message || 'Payment processing failed');
     } finally {
       setIsProcessing(false);
     }
